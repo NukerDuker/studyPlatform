@@ -42,8 +42,11 @@ public class Student {
     )
     private Set<Course> courses = new HashSet<>();
 
-    @OneToMany(mappedBy = "studentId")
+    @OneToMany(mappedBy = "student")
     private Set<Scores> scores = new HashSet<>();
+
+    @OneToMany(mappedBy = "student")
+    private Set<StudentRate> rates = new HashSet<>();
 
 
 

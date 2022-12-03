@@ -6,7 +6,7 @@ plugins {
 
 group = 'ru.skillfactory'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '19'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.24'
 	compileOnly 'org.projectlombok:lombok:1.18.24'
 	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql:42.5.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.5'

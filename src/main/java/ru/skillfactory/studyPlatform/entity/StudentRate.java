@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "scores_tab")
-public class Scores {
+@Table(name = "students_rates_tab")
+public class StudentRate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,9 +20,9 @@ public class Scores {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @Column(name = "lesson_id")
-    private long lessonId;
+    @Column(name = "course_id")
+    private long courseId;
 
-    @Column(name = "score")
-    private double score;
+    @Column
+    private double rate;
 }

@@ -12,14 +12,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "lessons_tab")
 public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "course_id")
-    private long courseId;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @Column(unique = true)
     private String title;
