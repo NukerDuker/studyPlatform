@@ -1,5 +1,7 @@
 package ru.skillfactory.studyPlatform.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +34,7 @@ public class Student {
     private int groupId;
 
     @Column(name = "is_active")
+    @JsonProperty("active")
     private boolean isActive;
 
     @ManyToMany(cascade = {CascadeType.ALL})
