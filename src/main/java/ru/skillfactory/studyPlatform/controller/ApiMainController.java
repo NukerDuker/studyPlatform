@@ -2,7 +2,6 @@ package ru.skillfactory.studyPlatform.controller;
 
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ public class ApiMainController {
 
     @PostMapping("/change/student")
     public ResponseEntity<Object> changeStudent(@RequestBody Student student) {
-        return studentService.changeStudent(student);
+        return studentService.changeStudentName(student);
     }
 
     @PostMapping("/save/course")
