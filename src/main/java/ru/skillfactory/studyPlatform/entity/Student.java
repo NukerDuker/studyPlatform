@@ -1,7 +1,6 @@
 package ru.skillfactory.studyPlatform.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,7 +46,7 @@ public class Student {
 
     @OneToMany
     @JoinColumn(name = "student_id")
-    private Set<Scores> scores = new HashSet<>();
+    private Set<Score> scores = new HashSet<>();
 
     @OneToMany
     @JoinColumn(name = "student_id")

@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.Course;
+import ru.skillfactory.studyPlatform.entity.Lesson;
+import ru.skillfactory.studyPlatform.entity.Student;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
+import ru.skillfactory.studyPlatform.repository.LessonRepo;
 
 import java.util.Map;
 import java.util.Optional;
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class CourseService {
 
     private final CourseRepo courseRepo;
+
+    private final LessonRepo lessonRepo;
 
     /**
      * Method saves course to database.
@@ -82,6 +87,18 @@ public class CourseService {
             return ResponseEntity.ok(course);
         } else {
             return ResponseEntity.ok(Map.of("error", "Course not found"));
+        }
+    }
+
+    public ResponseEntity<Object> addLesson(long courseId, long lessonId) {
+        Optional<Course> course = courseRepo.findById(courseId);
+        Optional<Lesson> lesson = lessonRepo.findById(lessonId);
+        if (course.isPresent() && lesson.isPresent()) {
+            course.get().addLesson(lesson.get());
+            courseRepo.save(course.get());
+            return ResponseEntity.ok(course);
+        } else {
+            return ResponseEntity.ok(Map.of("error", "Course or lesson not found"));
         }
     }
 

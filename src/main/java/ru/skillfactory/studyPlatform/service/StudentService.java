@@ -90,7 +90,7 @@ public class StudentService {
             studentRepo.save(student.get());
             return ResponseEntity.ok(student);
         } else {
-            return ResponseEntity.ok(Map.of("error", "Course doesnt belong to current student, or student not found"));
+            return ResponseEntity.ok(Map.of("error", "Course or student not found"));
         }
     }
 

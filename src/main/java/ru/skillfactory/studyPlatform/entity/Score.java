@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "scores_tab")
-public class Scores {
+public class Score {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

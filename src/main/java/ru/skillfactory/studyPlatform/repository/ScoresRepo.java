@@ -1,4 +1,8 @@
 package ru.skillfactory.studyPlatform.repository;
 
-public interface ScoresRepo {
+import org.springframework.data.repository.CrudRepository;
+import ru.skillfactory.studyPlatform.entity.Score;
+
+public interface ScoresRepo extends CrudRepository<Score, Long> {
+
 }

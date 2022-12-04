@@ -19,10 +19,6 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
-
     @Column(unique = true)
     private String title;
 

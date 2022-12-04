@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.skillfactory.studyPlatform.entity.Course;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
+import ru.skillfactory.studyPlatform.jsonModels.CourseAndLessonRequest;
 import ru.skillfactory.studyPlatform.service.CourseService;
 
 @RestController
@@ -29,10 +30,14 @@ public class CourseController {
         return courseService.getCourse(courseId);
     }
 
-    @PutMapping("/change/date")
+    @PostMapping("/change/date")
     public ResponseEntity<Object> changeCourseDates(@RequestBody ChangeCourseDates idAndDates) {
         return courseService.changeCourseDates(idAndDates);
     }
 
+    @PutMapping("/add/lesson")
+    public ResponseEntity<Object> addLesson(@RequestBody CourseAndLessonRequest request) {
+        return courseService.addLesson(request.getCourseId(), request.getLessonId());
+    }
 
 }
