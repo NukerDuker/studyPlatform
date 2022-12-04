@@ -23,6 +23,19 @@ public class CourseService {
 
     }
 
+    public ResponseEntity<Object> getCourse(long id) {
+        return this.checkIfExistAndReturn(id);
+    }
+
+    private ResponseEntity<Object> checkIfExistAndReturn(long id) {
+        Optional<Course> optCourse = courseRepo.findById(id);
+        if (optCourse.isPresent()) {
+            return ResponseEntity.ok(optCourse.get());
+        } else {
+            return ResponseEntity.ok(Map.of("error", "Course not found"));
+        }
+    }
+
     public ResponseEntity<Object> changeCourse(Course changedCourse) {
         Optional<Course> originalCourse = courseRepo.findById(changedCourse.getId());
         if (originalCourse.isPresent()) {

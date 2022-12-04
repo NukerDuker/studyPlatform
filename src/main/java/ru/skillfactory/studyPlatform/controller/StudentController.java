@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.skillfactory.studyPlatform.entity.Student;
 import ru.skillfactory.studyPlatform.jsonModels.AddStudentCourseRequest;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentGroupRequest;
+import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentName;
 import ru.skillfactory.studyPlatform.service.CourseService;
 import ru.skillfactory.studyPlatform.service.StudentService;
 
@@ -29,8 +30,8 @@ public class StudentController {
     }
 
     @PostMapping("/change/name")
-    public ResponseEntity<Object> changeStudentName(@RequestBody Student student) {
-        return studentService.changeStudentName(student);
+    public ResponseEntity<Object> changeStudentName(@RequestBody ChangeStudentName request) {
+        return studentService.changeStudentName(request);
     }
 
     @PostMapping("/change/group")
