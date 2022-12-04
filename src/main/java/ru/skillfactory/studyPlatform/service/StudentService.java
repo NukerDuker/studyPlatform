@@ -90,7 +90,7 @@ public class StudentService {
             studentRepo.save(student.get());
             return ResponseEntity.ok(student);
         } else {
-            return ResponseEntity.ok(Map.of("error", "Course doesnt belong to current student"));
+            return ResponseEntity.ok(Map.of("error", "Course doesnt belong to current student, or student not found"));
         }
     }
 
@@ -108,7 +108,7 @@ public class StudentService {
             studentRepo.save(student.get());
             return ResponseEntity.ok(student.get());
         } else {
-            return ResponseEntity.ok(Map.of("error", "Course doesnt belong to current student"));
+            return ResponseEntity.ok(Map.of("error", "Course doesnt belong to current student, or student not found"));
         }
     }
 

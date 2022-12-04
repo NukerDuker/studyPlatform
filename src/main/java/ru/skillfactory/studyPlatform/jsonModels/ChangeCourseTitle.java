@@ -1,11 +1,10 @@
 package ru.skillfactory.studyPlatform.jsonModels;
 
-
 import lombok.Data;
 
 @Data
-public class AddStudentCourseRequest {
+public class ChangeCourseTitle {
 
-    private long studentId;
     private long courseId;
+    private String title;
 }

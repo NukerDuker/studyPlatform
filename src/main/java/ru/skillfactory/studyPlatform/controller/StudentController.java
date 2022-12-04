@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillfactory.studyPlatform.entity.Student;
-import ru.skillfactory.studyPlatform.jsonModels.AddStudentCourseRequest;
+import ru.skillfactory.studyPlatform.jsonModels.StudentAndCourseRequest;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentGroupRequest;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentName;
 import ru.skillfactory.studyPlatform.service.CourseService;
@@ -40,7 +40,12 @@ public class StudentController {
     }
 
     @PutMapping("/add/course")
-    public ResponseEntity<Object> addCourse(@RequestBody AddStudentCourseRequest request) {
+    public ResponseEntity<Object> addCourse(@RequestBody StudentAndCourseRequest request) {
         return studentService.addCourse(request.getStudentId(), request.getCourseId());
+    }
+
+    @DeleteMapping("/delete/course")
+    public ResponseEntity<Object> deleteCourse(@RequestBody StudentAndCourseRequest request) {
+        return studentService.deleteCourse(request.getStudentId(), request.getCourseId());
     }
 }
