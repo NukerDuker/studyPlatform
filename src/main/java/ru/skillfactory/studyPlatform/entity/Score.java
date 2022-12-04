@@ -2,6 +2,7 @@ package ru.skillfactory.studyPlatform.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.lang.NonNull;
 
 @Entity
 @Setter
@@ -16,9 +17,11 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NonNull
     @Column(name = "lesson_id")
     private long lessonId;
 
     @Column(name = "score")
     private double score;
+
 }

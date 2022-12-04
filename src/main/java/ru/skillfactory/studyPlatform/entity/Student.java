@@ -60,5 +60,9 @@ public class Student {
     }
     public void deleteCourse(Course course) {this.courses.remove(course);}
 
+    public void addScore(Score score) {
+        scores.add(score);
+    }
+
 
 }

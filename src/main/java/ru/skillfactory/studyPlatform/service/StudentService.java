@@ -5,9 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.Course;
+import ru.skillfactory.studyPlatform.entity.Score;
 import ru.skillfactory.studyPlatform.entity.Student;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentName;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
+import ru.skillfactory.studyPlatform.repository.ScoresRepo;
 import ru.skillfactory.studyPlatform.repository.StudentRepo;
 
 import java.util.Map;
@@ -19,6 +21,8 @@ public class StudentService {
 
     private final StudentRepo studentRepo;
     private final CourseRepo courseRepo;
+
+    private final ScoresRepo scoresRepo;
 
     /**
      * Method saves student to database.
