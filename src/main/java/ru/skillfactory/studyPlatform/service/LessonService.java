@@ -15,10 +15,20 @@ public class LessonService {
 
     private final LessonRepo lessonRepo;
 
+    /**
+     * Method saves lesson to database.
+     * @param lesson - lesson object to save.
+     * @return Json representation of Lesson object.
+     */
     public ResponseEntity<Object> saveLesson(Lesson lesson){
         return ResponseEntity.ok(lessonRepo.save(lesson));
     }
 
+    /**
+     * Check if lesson with given Id exists, and return all fields of Lesson object.
+     * @param lessonId - lesson`s id in database.
+     * @return Json representation of Lesson object or error message.
+     */
     public ResponseEntity<Object> getLesson(long lessonId){
         Optional<Lesson> lesson = lessonRepo.findById(lessonId);
         if (lesson.isPresent()) {

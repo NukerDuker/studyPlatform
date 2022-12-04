@@ -69,6 +69,11 @@ public class CourseService {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Change start date and end date of the given course. Accept start/end dates together, or separate.
+     * @param idAndDates - id, start date (optional), end date (optional).
+     * @return Json representation of course object, or error message.
+     */
     public ResponseEntity<Object> changeCourseDates(ChangeCourseDates idAndDates) {
         Optional<Course> course = courseRepo.findById(idAndDates.getCourseId());
         if (course.isPresent()) {
