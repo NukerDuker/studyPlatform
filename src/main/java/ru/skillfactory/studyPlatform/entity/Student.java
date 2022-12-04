@@ -56,6 +56,9 @@ public class Student {
     public void addCourse(Course course) {
         this.courses.add(course);
     }
+    public void addCourse(Set<Course> course) {
+        this.courses.addAll(course);
+    }
     public void deleteCourse(Course course) {this.courses.remove(course);}
 
 

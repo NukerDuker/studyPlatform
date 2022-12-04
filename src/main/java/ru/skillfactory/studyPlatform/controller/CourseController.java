@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillfactory.studyPlatform.entity.Course;
+import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
 import ru.skillfactory.studyPlatform.service.CourseService;
 
@@ -26,6 +27,11 @@ public class CourseController {
     @GetMapping("/get/{courseId}")
     public ResponseEntity<Object> getCourse(@PathVariable long courseId) {
         return courseService.getCourse(courseId);
+    }
+
+    @PutMapping("/change/date")
+    public ResponseEntity<Object> changeCourseDates(@RequestBody ChangeCourseDates idAndDates) {
+        return courseService.changeCourseDates(idAndDates);
     }
 
 

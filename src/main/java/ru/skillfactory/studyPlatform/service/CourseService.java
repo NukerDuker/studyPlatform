@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.Course;
+import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
 
@@ -66,6 +67,17 @@ public class CourseService {
             response = Map.of("error", "Course not found");
         }
         return ResponseEntity.ok(response);
+    }
+
+    public ResponseEntity<Object> changeCourseDates(ChangeCourseDates idAndDates) {
+        Optional<Course> course = courseRepo.findById(idAndDates.getCourseId());
+        if (course.isPresent()) {
+            if (idAndDates.getStartDate() != null) course.get().setStartDate(idAndDates.getStartDate());
+            else if (idAndDates.getEndDate() != null) course.get().setEndDate(idAndDates.getEndDate());
+            return ResponseEntity.ok(course);
+        } else {
+            return ResponseEntity.ok(Map.of("error", "Course not found"));
+        }
     }
 
     private ResponseEntity<Object> removeOldTitleWithNew(ChangeCourseTitle courseDataToUpdate, Course originalCourse) {

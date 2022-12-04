@@ -34,4 +34,11 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private Set<Lesson> lessons = new HashSet<>();
+
+    public void addLesson(Lesson lesson) {lessons.add(lesson);}
+    public void addLesson(Set<Lesson> lessonsSet) {
+        lessons.addAll(lessonsSet);
+    }
+
+
 }
