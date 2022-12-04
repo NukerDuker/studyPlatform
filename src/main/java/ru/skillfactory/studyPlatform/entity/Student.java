@@ -37,20 +37,25 @@ public class Student {
     @JsonProperty("active")
     private boolean isActive;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "student_course",
-            joinColumns = { @JoinColumn(name = "student_id")},
-            inverseJoinColumns = { @JoinColumn(name = "course_id")}
+            joinColumns = { @JoinColumn(name = "student_id", referencedColumnName = "id")},
+            inverseJoinColumns = { @JoinColumn(name = "course_id",referencedColumnName = "id")}
     )
     private Set<Course> courses = new HashSet<>();
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany
+    @JoinColumn(name = "student_id")
     private Set<Scores> scores = new HashSet<>();
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany
+    @JoinColumn(name = "student_id")
     private Set<StudentRate> rates = new HashSet<>();
 
+    public void addCourse(Course course) {
+        this.courses.add(course);
+    }
 
 
 }

@@ -16,10 +16,6 @@ public class StudentRate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-
     @Column(name = "course_id")
     private long courseId;
 

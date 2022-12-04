@@ -32,9 +32,6 @@ public class Course {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @ManyToMany(mappedBy = "courses")
-    private Set<Student> students = new HashSet<>();
-
     @OneToMany(mappedBy = "course")
     private Set<Lesson> lessons = new HashSet<>();
 }

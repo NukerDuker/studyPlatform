@@ -1,9 +1,11 @@
 package ru.skillfactory.studyPlatform.service;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import ru.skillfactory.studyPlatform.entity.Course;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
 
@@ -11,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-@Data
+@RequiredArgsConstructor
 public class CourseService {
 
     private final CourseRepo courseRepo;

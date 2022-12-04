@@ -1,9 +1,12 @@
 package ru.skillfactory.studyPlatform.service;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import ru.skillfactory.studyPlatform.entity.Course;
 import ru.skillfactory.studyPlatform.entity.Student;
+import ru.skillfactory.studyPlatform.repository.CourseRepo;
 import ru.skillfactory.studyPlatform.repository.StudentRepo;
 
 import java.util.Map;
@@ -14,10 +17,20 @@ import java.util.Optional;
 public class StudentService {
 
     private final StudentRepo studentRepo;
+    private final CourseRepo courseRepo;
 
     public ResponseEntity<Object> saveStudent(Student newStudent) {
         Student student = studentRepo.save(newStudent);
         return ResponseEntity.ok().body(student);
+    }
+
+    public ResponseEntity<Object> getStudent(long studentId) {
+        Optional<Student> student = studentRepo.findById(studentId);
+        if (student.isPresent()) {
+            return ResponseEntity.ok(student);
+        } else {
+            return ResponseEntity.ok(Map.of("error", "Student not found"));
+        }
     }
 
     public ResponseEntity<Object> changeStudentName(Student changedStudent) {
@@ -31,6 +44,27 @@ public class StudentService {
         }
     }
 
+    public ResponseEntity<Object> changeStudentGroup(long studentId, int groupId) {
+        Optional<Student> student = studentRepo.findById(studentId);
+        if (student.isPresent()) {
+            student.get().setGroupId(groupId);
+            return ResponseEntity.ok(student.get());
+        } else {
+            return ResponseEntity.ok(Map.of("error", "Student not found"));
+        }
+    }
+
+    public ResponseEntity<Object> addCourse(long studentId, long courseId) {
+        Optional<Student> student = studentRepo.findById(studentId);
+        Optional<Course> course = courseRepo.findById(courseId);
+        if (student.isPresent() && course.isPresent()) {
+            student.get().addCourse(course.get());
+            studentRepo.save(student.get());
+            return ResponseEntity.ok(student);
+        } else {
+            return ResponseEntity.ok(Map.of("error", "Student or course not found"));
+        }
+    }
     private Student updateStudentsName(Student changedStudent, Student originalStudent) {
         if (changedStudent.getFirstName() != null) {
             System.out.println(changedStudent.getFirstName());

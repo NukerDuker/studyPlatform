@@ -16,10 +16,6 @@ public class Scores {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-
     @Column(name = "lesson_id")
     private long lessonId;
 
