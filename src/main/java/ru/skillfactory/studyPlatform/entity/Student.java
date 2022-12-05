@@ -64,5 +64,8 @@ public class Student {
         scores.add(score);
     }
 
+    public void addRate(StudentRate rate) {
+        rates.add(rate);
+    }
 
 }

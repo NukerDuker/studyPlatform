@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder(access = AccessLevel.PUBLIC)
 @Table(name = "students_rates_tab")
 public class StudentRate {
 

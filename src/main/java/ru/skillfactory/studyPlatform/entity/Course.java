@@ -38,6 +38,8 @@ public class Course {
     private Set<Lesson> lessons = new HashSet<>();
 
     public void addLesson(Lesson lesson) {lessons.add(lesson);}
+
+    //May be useful
     public void addLesson(Set<Lesson> lessonsSet) {
         lessons.addAll(lessonsSet);
     }

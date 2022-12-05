@@ -1,17 +1,22 @@
 package ru.skillfactory.studyPlatform.service;
 
 import lombok.Data;
-import org.springframework.http.ResponseEntity;
-import ru.skillfactory.studyPlatform.entity.Lesson;
-import ru.skillfactory.studyPlatform.entity.Student;
+import org.springframework.stereotype.Service;
+import ru.skillfactory.studyPlatform.entity.StudentRate;
+import ru.skillfactory.studyPlatform.repository.StudentRateRepo;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
+@Service
 public class StudentRateService {
 
-    private final StudentService studentService;
+    private final StudentRateRepo studentRateRepo;
 
-
+    public StudentRate saveRate(long courseId, double rate) {
+        StudentRate studentRate = StudentRate.builder()
+                .courseId(courseId)
+                .rate(rate)
+                .build();
+        return studentRateRepo.save(studentRate);
+    }
 }
