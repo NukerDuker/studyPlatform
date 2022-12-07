@@ -12,7 +12,7 @@ import ru.skillfactory.studyPlatform.service.StudentService;
 
 @RestController
 @Data
-@RequestMapping("/api/v1/student")
+@RequestMapping(path = "/api/v1/student")
 public class StudentController {
 
     private final StudentService studentService;

@@ -1,6 +1,7 @@
 package ru.skillfactory.studyPlatform.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 @Table(name = "students_tab")
 public class Student {
 
+    @Hidden
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -35,7 +37,7 @@ public class Student {
     @Column(name = "is_active")
     @JsonProperty("active")
     private boolean isActive;
-
+    @Hidden
     @ManyToMany
     @JoinTable(
             name = "student_course",
@@ -43,11 +45,11 @@ public class Student {
             inverseJoinColumns = { @JoinColumn(name = "course_id",referencedColumnName = "id")}
     )
     private Set<Course> courses = new HashSet<>();
-
+    @Hidden
     @OneToMany
     @JoinColumn(name = "student_id")
     private Set<Score> scores = new HashSet<>();
-
+    @Hidden
     @OneToMany
     @JoinColumn(name = "student_id")
     private Set<StudentRate> rates = new HashSet<>();

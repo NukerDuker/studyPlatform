@@ -1,5 +1,7 @@
 package ru.skillfactory.studyPlatform.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @Table(name = "lessons_tab")
 public class Lesson {
 
+    @Hidden
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

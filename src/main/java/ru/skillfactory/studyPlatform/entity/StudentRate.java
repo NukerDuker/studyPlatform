@@ -1,5 +1,6 @@
 package ru.skillfactory.studyPlatform.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import lombok.*;
 @Table(name = "students_rates_tab")
 public class StudentRate {
 
+    @Hidden
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

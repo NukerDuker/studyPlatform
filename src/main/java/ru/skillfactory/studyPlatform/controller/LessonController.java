@@ -13,7 +13,7 @@ public class LessonController {
 
     private final LessonService lessonService;
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/{lessonId}")
     public ResponseEntity<Object> getLesson(@PathVariable long lessonId) {
         return lessonService.getLesson(lessonId);
     }

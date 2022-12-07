@@ -1,5 +1,6 @@
 package ru.skillfactory.studyPlatform.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.lang.NonNull;
@@ -13,6 +14,7 @@ import org.springframework.lang.NonNull;
 @Table(name = "scores_tab")
 public class Score {
 
+    @Hidden
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

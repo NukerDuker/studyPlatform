@@ -1,5 +1,6 @@
 package ru.skillfactory.studyPlatform.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ import java.util.Set;
 @Table(name = "courses_tab")
 public class Course {
 
+    @Hidden
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -32,7 +34,7 @@ public class Course {
 
     @Column(name = "is_active")
     private boolean isActive;
-
+    @Hidden
     @OneToMany
     @JoinColumn(name = "course_id")
     private Set<Lesson> lessons = new HashSet<>();

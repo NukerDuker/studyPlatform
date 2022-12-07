@@ -1,5 +1,6 @@
 package ru.skillfactory.studyPlatform.service;
 
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Transactional
 @Data
 @Service
 public class ScoresService {
@@ -37,16 +39,17 @@ public class ScoresService {
         Optional<Student> optStudent = studentRepo.findById(request.getStudentId());
         if (optStudent.isEmpty()) return ResponseEntity.ok(Map.of("error", "Student not found"));
 
-        Student student = this.saveScoreAndAddToStudent(request, optStudent.get());
+        Course course = this.findCourseByLesson(optStudent.get().getCourses(), request.getLessonId());
+        if (course == null) {
+            return ResponseEntity.ok(Map.of("error", "Course not found"));
+        }
 
-        Course course = this.findCourseByLesson(student.getCourses(), request.getLessonId());
-        // TODO: 04.12.2022 Check if it is possible below
-        if (course == null) return ResponseEntity.ok(Map.of("error", "Course not found"));
+        Student student = this.saveScoreAndAddToStudent(request, optStudent.get());
 
         Map<Long, Double> lessonIdsAndMaxScores = this.getLessonsBeforeToday(course);
         double rate = this.countRate(student.getScores(), lessonIdsAndMaxScores);
         System.out.println("Student rate is : " + rate);
-        StudentRate studentRate = studentRateService.saveRate(course.getId(), rate);
+        StudentRate studentRate = studentRateService.saveRate(course.getId(), rate, student);
         student.addRate(studentRate);
         studentRepo.save(student);
         return ResponseEntity.ok(optStudent);
