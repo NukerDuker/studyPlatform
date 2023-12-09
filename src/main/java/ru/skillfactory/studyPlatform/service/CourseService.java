@@ -5,9 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.Course;
 import ru.skillfactory.studyPlatform.entity.Lesson;
-import ru.skillfactory.studyPlatform.entity.Student;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
+import ru.skillfactory.studyPlatform.models.ChangeCourseDates;
+import ru.skillfactory.studyPlatform.models.ChangeCourseTitle;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
 import ru.skillfactory.studyPlatform.repository.LessonRepo;
 
@@ -47,17 +46,15 @@ public class CourseService {
     /**
      * Method checks, if course exist, and return json representation of it`s object, or error message.
      * @param id - id of course to check
-     * @return
      */
     private ResponseEntity<Object> checkIfExistAndReturn(long id) {
         Optional<Course> optCourse = courseRepo.findById(id);
-        return optCourse.isPresent() ? ResponseEntity.ok(optCourse.get()) : ResponseEntity.ok(Map.of("error", "Course not found"));
+        return optCourse.<ResponseEntity<Object>>map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.ok(Map.of("error", "Course not found")));
     }
 
     /**
      * Method rename course, if new title is unique for the table courses_tab.
      * @param idAndNewTitle - id and new title for the course
-     * @return
      */
     public ResponseEntity<Object> changeCourseTitle(ChangeCourseTitle idAndNewTitle) {
         Map<String, Object> response;

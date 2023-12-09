@@ -5,9 +5,9 @@ import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillfactory.studyPlatform.entity.Course;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
-import ru.skillfactory.studyPlatform.jsonModels.CourseAndLessonRequest;
+import ru.skillfactory.studyPlatform.models.ChangeCourseDates;
+import ru.skillfactory.studyPlatform.models.ChangeCourseTitle;
+import ru.skillfactory.studyPlatform.models.CourseAndLessonRequest;
 import ru.skillfactory.studyPlatform.service.CourseService;
 
 @RestController

@@ -4,9 +4,9 @@ import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillfactory.studyPlatform.entity.Student;
-import ru.skillfactory.studyPlatform.jsonModels.StudentAndCourseRequest;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentGroupRequest;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentName;
+import ru.skillfactory.studyPlatform.models.StudentAndCourseRequest;
+import ru.skillfactory.studyPlatform.models.ChangeStudentGroupRequest;
+import ru.skillfactory.studyPlatform.models.ChangeStudentName;
 import ru.skillfactory.studyPlatform.service.CourseService;
 import ru.skillfactory.studyPlatform.service.StudentService;
 

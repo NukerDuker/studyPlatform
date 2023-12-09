@@ -1,4 +1,4 @@
-package ru.skillfactory.studyPlatform.jsonModels;
+package ru.skillfactory.studyPlatform.models;
 
 
 import lombok.Data;

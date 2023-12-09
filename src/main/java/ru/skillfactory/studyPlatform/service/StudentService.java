@@ -1,13 +1,11 @@
 package ru.skillfactory.studyPlatform.service;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.Course;
-import ru.skillfactory.studyPlatform.entity.Score;
 import ru.skillfactory.studyPlatform.entity.Student;
-import ru.skillfactory.studyPlatform.jsonModels.ChangeStudentName;
+import ru.skillfactory.studyPlatform.models.ChangeStudentName;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
 import ru.skillfactory.studyPlatform.repository.ScoresRepo;
 import ru.skillfactory.studyPlatform.repository.StudentRepo;
@@ -124,7 +122,6 @@ public class StudentService {
      */
     private Student updateStudentsName(ChangeStudentName changedStudent, Student originalStudent) {
         if (changedStudent.getFirstName() != null) {
-            System.out.println(changedStudent.getFirstName());
             originalStudent.setFirstName(changedStudent.getFirstName());
         }
         if (changedStudent.getLastName() != null) {

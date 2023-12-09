@@ -5,10 +5,9 @@ import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.*;
-import ru.skillfactory.studyPlatform.jsonModels.MakeStudentScore;
+import ru.skillfactory.studyPlatform.models.MakeStudentScore;
 import ru.skillfactory.studyPlatform.repository.LessonRepo;
 import ru.skillfactory.studyPlatform.repository.ScoresRepo;
-import ru.skillfactory.studyPlatform.repository.StudentRateRepo;
 import ru.skillfactory.studyPlatform.repository.StudentRepo;
 
 import java.time.LocalDateTime;
@@ -48,7 +47,6 @@ public class ScoresService {
 
         Map<Long, Double> lessonIdsAndMaxScores = this.getLessonsBeforeToday(course);
         double rate = this.countRate(student.getScores(), lessonIdsAndMaxScores);
-        System.out.println("Student rate is : " + rate);
         StudentRate studentRate = studentRateService.saveRate(course.getId(), rate, student);
         student.addRate(studentRate);
         studentRepo.save(student);
@@ -92,7 +90,7 @@ public class ScoresService {
             course = courses.stream()
                     .filter(x -> x.getLessons().contains(lesson.get()))
                     .findFirst();
-            System.out.println(course.get());
+
             return course.get();
         }
         return null;
