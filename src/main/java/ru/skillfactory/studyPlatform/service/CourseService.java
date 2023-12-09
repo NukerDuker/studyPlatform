@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillfactory.studyPlatform.entity.Course;
 import ru.skillfactory.studyPlatform.entity.Lesson;
-import ru.skillfactory.studyPlatform.entity.Student;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseDates;
 import ru.skillfactory.studyPlatform.jsonModels.ChangeCourseTitle;
 import ru.skillfactory.studyPlatform.repository.CourseRepo;
@@ -19,7 +18,6 @@ import java.util.Optional;
 public class CourseService {
 
     private final CourseRepo courseRepo;
-
     private final LessonRepo lessonRepo;
 
     /**
@@ -51,7 +49,8 @@ public class CourseService {
      */
     private ResponseEntity<Object> checkIfExistAndReturn(long id) {
         Optional<Course> optCourse = courseRepo.findById(id);
-        return optCourse.isPresent() ? ResponseEntity.ok(optCourse.get()) : ResponseEntity.ok(Map.of("error", "Course not found"));
+        return optCourse.<ResponseEntity<Object>>map(ResponseEntity::ok).orElseGet(() ->
+                ResponseEntity.ok(Map.of("error" to "Course not found")));
     }
 
     /**
